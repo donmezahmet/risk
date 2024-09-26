@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management - Task Board</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="frontend.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Board</h1>
+        
+        <div class="main-content">
+            <!-- Left side: Department and Process list -->
+            <div class="filter-menu">
+                <h3>Departments</h3>
+                <ul id="departmentList">
+                    <li onclick="filterTasks('All')">All</li>
+                </ul>
+            </div>
+
+            <!-- Task Board -->
+            <div class="board">
+                <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <h2>To Do</h2>
+                    <ul id="todoTasks" class="task-list"></ul>
+                </div>
+                <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <h2>In Progress</h2>
+                    <ul id="inProgressTasks" class="task-list"></ul>
+                </div>
+                <div class="column" id="completed" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <h2>Completed</h2>
+                    <ul id="completedTasks" class="task-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- "+" button -->
+        <button id="addTaskBtn" class="add-task-btn">+</button>
+        
+        <!-- Timeline button -->
+        <button id="showTimelineBtn" class="show-timeline-btn">Timeline</button>
+
+        <!-- Task create/edit pop-up -->
+        <div id="taskModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Task Create/Edit</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="process">Process</label>
+                        <input type="text" id="process" name="process" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="processType">Process Type</label>
+                        <select id="processType" name="processType">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Operational Process">Operational Process</option>
+                            <option value="Financial Process">Financial Process</option>
+                            <option value="Technology Process">Technology Process</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stakeholders">Stakeholders (Departments)</label>
+                        <input type="text" id="stakeholders" name="stakeholders">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectFolder">Project Documentation Folder (URL)</label>
+                        <input type="url" id="projectFolder" name="projectFolder">
+                    </div>
+
+                    <button type="submit" class="save-btn">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Timeline Modal -->
+        <div id="timelineModal" class="modal">
+            <div class="modal-content timeline-content">
+                <span class="close">&times;</span>
+                <h2>Timeline</h2>
+                <div id="timeline"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
